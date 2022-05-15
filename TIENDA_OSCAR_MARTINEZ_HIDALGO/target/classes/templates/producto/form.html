@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="@{fragments/cabecera.html} :: cabeceraLink">
+
+</head>
+<body>
+
+
+
+<div th:replace="@{fragments/cabecera.html} :: cabecera"></div>
+
+ 	<h3 class="text-center">Formulario de Productos</h3>
+	<hr/>
+
+	<div  th:if="${tipoFormulario} == 1" class="col-md-5 col-lg-5 container abs-center">
+		<!--<h4 class="mb-3 text-center">Pantalla de Producto</h4>-->
+		<form th:action="@{/producto/update}" th:object="${producto}" method="post"
+			class="needs-validation" novalidate>
+			<div class="col-md-3 border-right center mx-auto">
+				<div
+					class="d-flex flex-column align-items-center text-center p-3 py-5">
+					<img class="rounded-circle mt-5" width="150px"
+						th:src="@{/imagenes/gravel1.jpg}"></img>
+				</div>
+			</div>
+			<div class="row g-3">
+				<div class="col-12">
+					<label for="id" class="form-label"></label>
+					 <input	type="hidden" class="form-control text-danger" id="id" name="id"
+						th:field="${producto.id}">
+				</div>
+				<div class="col-12">
+					<label for="nombre" class="form-label">Nombre</label>
+					 <input	type="text" class="form-control text-danger" id="nombre" name="nombre"
+						th:field="${producto.nombre}" required >
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12">
+					<label for="descripcion" class="form-label">Descripcion</label> <input
+						type="text" class="form-control text-danger" id="descripcion" name="descripcion"
+						th:field="${producto.descripcion}" required>
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12">
+					<label for="categoria" class="form-label">Categoria</label> <input
+						type="text" class="form-control text-danger" id="categoria" name="categoria"
+						th:field="${producto.categorias.nombre}" required>
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12">
+					<label for="precio" class="form-label">Precio</label> <input
+						type="number" class="form-control text-danger" id="precio" name="precio"
+						th:field="${producto.precio}">
+				</div>
+				<div class="col-12">
+					<label for="impuesto" class="form-label">Impuesto</label> <input
+						type="number" class="form-control text-danger" id="impuesto" name="impuesto"
+						th:field="${producto.impuesto}">
+				</div>
+				<div class="col-12">
+					<label for="stock" class="form-label">Stock</label> <input
+						type="number" class="form-control text-danger" id="stock" name="stock"
+						th:field="${producto.stock}">
+				</div>
+				<div class="col-6">
+					<label for="fecha_alta" class="form-label">Fecha Alta</label> <input
+						type="date" class="form-control text-danger" id="fecha_alta" name="fecha_alta"
+						th:field="${producto.fecha_alta}">
+				</div>
+				<div class="col-6">
+					<label for="fecha_baja" class="form-label">Fecha Baja</label> <input type="date"
+						class="form-control text-danger" id="fecha_baja" name="fecha_baja"
+						th:field="${producto.fecha_baja}">
+				</div>
+				
+			</div>
+			<hr class="my-4">
+			<button class="w-100 btn btn-danger btn-lg" type="submit">Grabar</button>
+		</form>
+	</div>
+
+	<div  th:if="${tipoFormulario} == 2" class="col-md-5 col-lg-5 container abs-center">
+		<!--<h4 class="mb-3 text-center">Pantalla de Producto</h4>-->
+		<form th:action="@{/producto/save}" th:object="${producto}" method="post"
+			class="needs-validation" novalidate>
+			<div class="col-md-3 border-right center mx-auto">
+				<div
+					class="d-flex flex-column align-items-center text-center p-3 py-5">
+					<img class="rounded-circle mt-5" width="150px"
+						th:src="@{/imagenes/gravel1.jpg}"></img>
+				</div>
+			</div>
+			<div class="row g-3">
+				<div class="col-12">
+					<label for="nombre" class="form-label">Nombre</label>
+					 <input	type="text" class="form-control text-danger" id="nombre" name="nombre"
+						th:field="${producto.nombre}" required >
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12">
+					<label for="descripcion" class="form-label">Descripcion</label> <input
+						type="text" class="form-control text-danger" id="descripcion" name="descripcion"
+						th:field="${producto.descripcion}" required>
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12">
+					<label for="categoria" class="form-label">Categoria</label> <input
+						type="text" class="form-control text-danger" id="categoria" name="categoria"
+						th:field="${producto.categorias.nombre}" required>
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12">
+					<label for="precio" class="form-label">Precio</label> <input
+						type="number" class="form-control text-danger" id="precio" name="precio"
+						th:field="${producto.precio}">
+				</div>
+				<div class="col-12">
+					<label for="impuesto" class="form-label">Impuesto</label> <input
+						type="number" class="form-control text-danger" id="impuesto" name="impuesto"
+						th:field="${producto.impuesto}">
+				</div>
+				<div class="col-12">
+					<label for="stock" class="form-label">Stock</label> <input
+						type="number" class="form-control text-danger" id="stock" name="stock"
+						th:field="${producto.stock}">
+				</div>
+				<div class="col-6">
+					<label for="fecha_alta" class="form-label">Fecha Alta</label> <input
+						type="date" class="form-control text-danger" id="fecha_alta" name="fecha_alta"
+						th:field="${producto.fecha_alta}">
+				</div>
+				<div class="col-6">
+					<label for="fecha_baja" class="form-label">Fecha Baja</label> <input type="date"
+						class="form-control text-danger" id="fecha_baja" name="fecha_baja"
+						th:field="${producto.fecha_baja}">
+				</div>
+			</div>
+			<hr class="my-4">
+			<button class="w-100 btn btn-danger btn-lg" type="submit">Grabar</button>
+		</form>
+	</div>
+
+
+	<script>
+		(function() {
+			'use strict'
+			// Fetch all the forms we want to apply custom Bootstrap validation styles to
+			var forms = document.querySelectorAll('.needs-validation')
+			// Loop over them and prevent submission
+			Array.prototype.slice.call(forms).forEach(function(form) {
+				form.addEventListener('submit', function(event) {
+					if (!form.checkValidity()) {
+						event.preventDefault()
+						event.stopPropagation()
+					}
+					form.classList.add('was-validated')
+				}, false)
+			})
+		})()
+	</script>
+
+
+
+
+
+
+	<div th:replace="@{fragments/pie.html} :: footer"></div>
+
+
+</body>
+</html>

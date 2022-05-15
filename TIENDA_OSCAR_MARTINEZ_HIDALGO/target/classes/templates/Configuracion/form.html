@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="@{fragments/cabecera.html} :: cabeceraLink">
+
+</head>
+<body>
+	<div th:replace="@{fragments/cabecera.html} :: cabecera"></div>
+
+	<h3 class="text-center">Formulario de Configuracion</h3>
+	<hr />
+
+	<div  th:if="${tipoFormulario} == 1" class="col-md-5 col-lg-5 container abs-center">
+		<!--<h4 class="mb-3 text-center">Pantalla de Producto</h4>-->
+		<form th:action="@{/configuracion/update}" th:object="${configuracion}" method="post"
+			class="needs-validation" novalidate>
+			<div class="row g-3">
+				<div class="col-12">
+					<label for="id" class="form-label"></label>
+					 <input	type="hidden" class="form-control text-danger" id="id" name="id"
+						th:field="${configuracion.id}">
+				</div>
+				<div class="col-12">
+					<label for="clave" class="form-label">Clave</label>
+					 <input	type="text" class="form-control text-danger" id="clave" name="clave"
+						th:field="${configuracion.clave}" required >
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12">
+					<label for="valor" class="form-label">Valor</label> <input
+						type="text" class="form-control text-danger" id="valor" name="valor"
+						th:field="${configuracion.valor}" required>
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12">
+					<label for="tipo" class="form-label">Tipo Dato</label> 
+					<select class="form-select text-danger" name="tipo" id="tipo" th:field="${configuracion.tipo}">
+						<option selected disabled value="">Seleccione...</option>
+						<option value="Texto">Texto</option>
+						<option value="Numero">Numero</option>
+					</select>
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+			</div>
+			<hr class="my-4">
+			<button class="w-100 btn btn-danger btn-lg" type="submit">Grabar</button>
+		</form>
+	</div>
+
+	<div  th:if="${tipoFormulario} == 2" class="col-md-5 col-lg-5 container abs-center">
+		<!--<h4 class="mb-3 text-center">Pantalla de Producto</h4>-->
+		<form th:action="@{/configuracion/save}" th:object="${categorias}" method="post"
+			class="needs-validation" novalidate>
+			<div class="row g-3">
+				<div class="col-12">
+					<label for="clave" class="form-label">Clave</label>
+					 <input	type="text" class="form-control text-danger" id="clave" name="clave"
+						th:field="${configuracion.clave}" required >
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12">
+					<label for="valor" class="form-label">Valor</label> <input
+						type="text" class="form-control text-danger" id="valor" name="valor"
+						th:field="${configuracion.valor}" required>
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12">
+					<label for="tipo" class="form-label">Tipo Dato</label> 
+					<select class="form-select text-danger" name="tipo" id="tipo" th:field="${configuracion.tipo}">
+						<option selected disabled value="">Seleccione...</option>
+						<option value="Texto">Texto</option>
+						<option value="Numero">Numero</option>
+					</select>
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+			</div>
+			<hr class="my-4">
+			<button class="w-100 btn btn-danger btn-lg" type="submit">Grabar</button>
+		</form>
+	</div>
+
+	<script>
+		(function() {
+			'use strict'
+			// Fetch all the forms we want to apply custom Bootstrap validation styles to
+			var forms = document.querySelectorAll('.needs-validation')
+			// Loop over them and prevent submission
+			Array.prototype.slice.call(forms).forEach(function(form) {
+				form.addEventListener('submit', function(event) {
+					if (!form.checkValidity()) {
+						event.preventDefault()
+						event.stopPropagation()
+					}
+					form.classList.add('was-validated')
+				}, false)
+			})
+		})()
+	</script>
+
+	<div th:replace="@{fragments/pie.html} :: footer"></div>
+
+
+</body>
+</html>

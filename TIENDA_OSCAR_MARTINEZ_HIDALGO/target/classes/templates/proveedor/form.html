@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="@{fragments/cabecera.html} :: cabeceraLink">
+
+</head>
+<body>
+
+
+
+<div th:replace="@{fragments/cabecera.html} :: cabecera"></div>
+
+ 	<h3 class="text-center">Formulario de Proveedor</h3>
+	<hr/>
+
+	<div  th:if="${tipoFormulario} == 1" class="col-md-5 col-lg-5 container abs-center">
+		<!--<h4 class="mb-3 text-center">Pantalla de Producto</h4>-->
+		<form th:action="@{/proveedor/update}" th:object="${proveedores}" method="post"
+			class="needs-validation" novalidate>
+			<div class="row g-3">
+				<div class="col-12">
+					<label for="id" class="form-label"></label>
+					 <input	type="hidden" class="form-control text-danger" id="id" name="id"
+						th:field="${proveedores.id}">
+				</div>
+				<div class="col-12">
+					<label for="nombre" class="form-label">Nombre</label>
+					 <input	type="text" class="form-control text-danger" id="nombre" name="nombre"
+						th:field="${proveedores.nombre}" required >
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12">
+					<label for="direccion" class="form-label">Direccion</label> <input
+						type="text" class="form-control text-danger" id="direccion" name="direccion"
+						th:field="${proveedores.direccion}" required>
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12">
+					<label for="localidad" class="form-label">Localidad</label> <input
+						type="text" class="form-control text-danger" id="localidad" name="localidad"
+						th:field="${proveedores.localidad}" required>
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12">
+					<label for="provincia" class="form-label">Provincia</label> <input
+						type="text" class="form-control text-danger" id="provincia" name="provincia"
+						th:field="${proveedores.provincia}" required>
+				</div>
+				<div class="col-12">
+					<label for="cif" class="form-label">CIF</label> <input
+						type="text" class="form-control text-danger" id="cif" name="cif"
+						th:field="${proveedores.cif}" required>
+				</div>
+				<div class="col-12">
+					<label for="telefono" class="form-label">Telefono</label> <input
+						type="text" class="form-control text-danger" id="telefono" name="telefono"
+						th:field="${proveedores.telefono}">
+				</div>
+				<div class="col-6">
+					<label for="email" class="form-label">eMail</label> <input
+						type="email" class="form-control text-danger" id="email" name="email"
+						th:field="${proveedores.email}">
+				</div>
+			</div>
+			<hr class="my-4">
+			<button class="w-100 btn btn-danger btn-lg" type="submit">Grabar</button>
+		</form>
+	</div>
+
+	<div  th:if="${tipoFormulario} == 2" class="col-md-5 col-lg-5 container abs-center">
+		<!--<h4 class="mb-3 text-center">Pantalla de Producto</h4>-->
+		<form th:action="@{/proveedor/save}" th:object="${proveedores}" method="post"
+			class="needs-validation" novalidate>
+					<div class="row g-3">
+				<div class="col-12">
+					<label for="id" class="form-label"></label>
+					 <input	type="hidden" class="form-control text-danger" id="id" name="id"
+						th:field="${proveedores.id}">
+				</div>
+				<div class="col-12">
+					<label for="nombre" class="form-label">Nombre</label>
+					 <input	type="text" class="form-control text-danger" id="nombre" name="nombre"
+						th:field="${proveedores.nombre}" required >
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12">
+					<label for="direccion" class="form-label">Direccion</label> <input
+						type="text" class="form-control text-danger" id="direccion" name="direccion"
+						th:field="${proveedores.direccion}" required>
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12">
+					<label for="localidad" class="form-label">Localidad</label> <input
+						type="text" class="form-control text-danger" id="localidad" name="localidad"
+						th:field="${proveedores.localidad}" required>
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12">
+					<label for="provincia" class="form-label">Provincia</label> <input
+						type="text" class="form-control text-danger" id="provincia" name="provincia"
+						th:field="${proveedores.provincia}" required>
+				</div>
+				<div class="col-12">
+					<label for="cif" class="form-label">CIF</label> <input
+						type="text" class="form-control text-danger" id="cif" name="cif"
+						th:field="${proveedores.cif}" required>
+				</div>
+				<div class="col-12">
+					<label for="telefono" class="form-label">Telefono</label> <input
+						type="text" class="form-control text-danger" id="telefono" name="telefono"
+						th:field="${proveedores.telefono}">
+				</div>
+				<div class="col-6">
+					<label for="email" class="form-label">eMail</label> <input
+						type="email" class="form-control text-danger" id="email" name="email"
+						th:field="${proveedores.email}">
+				</div>
+			</div>
+			<hr class="my-4">
+			<button class="w-100 btn btn-danger btn-lg" type="submit">Grabar</button>
+		</form>
+	</div>
+
+
+	<script>
+		(function() {
+			'use strict'
+			// Fetch all the forms we want to apply custom Bootstrap validation styles to
+			var forms = document.querySelectorAll('.needs-validation')
+			// Loop over them and prevent submission
+			Array.prototype.slice.call(forms).forEach(function(form) {
+				form.addEventListener('submit', function(event) {
+					if (!form.checkValidity()) {
+						event.preventDefault()
+						event.stopPropagation()
+					}
+					form.classList.add('was-validated')
+				}, false)
+			})
+		})()
+	</script>
+
+
+
+
+
+
+	<div th:replace="@{fragments/pie.html} :: footer"></div>
+
+
+</body>
+</html>

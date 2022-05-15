@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="@{fragments/cabecera.html} :: cabeceraLink">
+
+</head>
+<body>
+
+
+
+	<div th:replace="@{fragments/cabecera.html} :: cabecera"></div>
+
+
+	<h3 class="text-center">Formulario de Clientes</h3>
+	<hr />
+
+	<div th:if="${tipoFormulario} == 1"
+		class="col-md-5 col-lg-5 container abs-center">
+		<!-- <h4 class="mb-3 text-center">Pantalla de Cliente</h4> -->
+		<form th:action="@{/cliente/update}" th:object="${usuarios}"
+			method="post" class="needs-validation" novalidate>
+			<div class="col-md-3 border-right center mx-auto">
+				<div
+					class="d-flex flex-column align-items-center text-center p-3 py-5">
+					<img class="rounded-circle mt-5" width="150px"
+						th:src="@{/imagenes/perfil1.jpg}"></img>
+				</div>
+			</div>
+			<div class="row g-3">
+				<div class="col-12">
+					<label for="id" class="form-label"></label> <input type="hidden"
+						class="form-control text-danger" id="id" name="id"
+						th:field="${usuarios.id}">
+				</div>
+
+				<!-- EN FUNCION DEL ROL LA LISTA DE SELECCION TENDRA UNOS VALORES U OTROS -->
+				<div class="col-12"th:if="${session.usuarioSesion.roles.id} == 4"><!-- administrador -->
+					<label for="rol" class="form-label">Rol</label> 
+					<!-- <input type="text" class="form-control text-danger" id="rol" name="rol"	th:field="${usuarios.roles.rol}" required> -->
+					<select class="form-select text-danger" name="rol" id="rol"	th:field="${usuarios.roles.rol}">
+						<option selected disabled value="">Seleccione...</option>
+						<option value="administrador">Administrador</option>
+						<option value="empleado">Empleado</option>
+						<option value="cliente">Cliente</option>
+					</select>
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12"th:if="${session.usuarioSesion.roles.id} == 3"><!-- empleado -->
+					<label for="rol" class="form-label">Rol</label> 
+					<!-- <input type="text" class="form-control text-danger" id="rol" name="rol"	th:field="${usuarios.roles.rol}" required> -->
+					<select class="form-select text-danger" name="rol" id="rol"	th:field="${usuarios.roles.rol}">
+						<option selected disabled value="">Seleccione...</option>
+						<option value="empleado">Empleado</option>
+						<option value="cliente">Cliente</option>
+					</select>
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<!-- ****************************************************************************************** -->
+				
+				<div class="col-12">
+					<label for="email" class="form-label">eMail</label> <input
+						type="text" class="form-control text-danger" id="email"
+						name="email" th:field="${usuarios.email}" required>
+				</div>
+
+				<!-- EN FUNCION DE SI ES ADMINISTRADOR O NO MUESTRO LA CLAVE ENCRPTADA -->
+				<div class="col-12" th:if="${session.usuarioSesion.roles.id} == 4">
+					<!-- administrador -->
+					<label for="clave" class="form-label">Clave</label> <input
+						type="text" class="form-control text-danger" id="clave"
+						name="clave" th:field="${usuarios.clave}" required>
+				</div>
+				<div class="col-12" th:if="${session.usuarioSesion.roles.id} == 3">
+					<!-- empleado -->
+					<label for="clave" class="form-label">Clave</label> <input
+						type="text" class="form-control text-danger" id="clave"
+						name="clave">
+				</div>
+				<!-- ************************************************************************* -->
+
+
+				<div class="col-12">
+					<label for="nombre" class="form-label">Nombre</label> <input
+						type="text" class="form-control text-danger" id="nombre"
+						name="nombre" th:field="${usuarios.nombre}" required>
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12">
+					<label for="apellido1" class="form-label">Apellido1</label> <input
+						type="text" class="form-control text-danger" id="apellido1"
+						name="apellido1" th:field="${usuarios.apellido1}" required>
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12">
+					<label for="apellido2" class="form-label">Apellido2</label> <input
+						type="text" class="form-control text-danger" id="apellido2"
+						name="apellido2" th:field="${usuarios.apellido2}">
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12">
+					<label for="direccion" class="form-label">Direccion</label> <input
+						type="text" class="form-control text-danger" id="direccion"
+						name="direccion" th:field="${usuarios.direccion}">
+				</div>
+				<div class="col-12">
+					<label for="provincia" class="form-label">Provincia</label> <input
+						type="text" class="form-control text-danger" id="provincia"
+						name="provincia" th:field="${usuarios.provincia}">
+				</div>
+				<div class="col-6">
+					<label for="localidad" class="form-label">Localidad</label> <input
+						type="text" class="form-control text-danger" id="localidad"
+						name="localidad" th:field="${usuarios.localidad}">
+				</div>
+				<div class="col-6">
+					<label for="telefono" class="form-label">Telefono</label> <input
+						type="text" class="form-control text-danger" id="telefono"
+						name="telefono" th:field="${usuarios.telefono}">
+				</div>
+				<div class="col-6">
+					<label for="dni" class="form-label">DNI</label> <input type="text"
+						class="form-control text-danger" id="dni" name="dni"
+						th:field="${usuarios.dni}">
+				</div>
+			</div>
+			<hr class="my-4">
+			<button class="w-100 btn btn-danger btn-lg" type="submit">Grabar</button>
+		</form>
+	</div>
+
+	<div th:if="${tipoFormulario} == 2"
+		class="col-md-5 col-lg-5 container abs-center">
+		<!-- <h4 class="mb-3 text-center">Pantalla de Cliente</h4> -->
+		<form th:action="@{/cliente/save}" th:object="${usuarios}"
+			method="post" class="needs-validation" novalidate>
+			<div class="col-md-3 border-right center mx-auto">
+				<div
+					class="d-flex flex-column align-items-center text-center p-3 py-5">
+					<img class="rounded-circle mt-5" width="150px"
+						th:src="@{/imagenes/perfil1.jpg}"></img>
+				</div>
+			</div>
+			<div class="row g-3">
+				<div class="col-12">
+					<label for="id" class="form-label"></label> <input type="hidden"
+						class="form-control text-danger" id="id" name="id"
+						th:field="${usuarios.id}">
+				</div>
+
+				<!-- EN FUNCION DEL ROL LA LISTA DE ROLES PARA GRABAR UN ALTA NUEVO CAMBIA -->
+				<div class="col-12" th:if="${session.usuarioSesion.roles.id} == 4">
+					<!-- administrador -->
+					<label for="rol" class="form-label">Rol</label>
+					<!-- <input type="text" class="form-control text-danger" id="rol" name="rol" th:field="${usuarios.roles.rol}" required>-->
+					<select class="form-select text-danger" name="rol" id="rol"
+						th:field="${usuarios.roles.rol}">
+						<option selected disabled value="">Seleccione...</option>
+						<option value="administrador">Administrador</option>
+						<option value="empleado">Empleado</option>
+						<option value="cliente">Cliente</option>
+					</select>
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12" th:if="${session.usuarioSesion.roles.id} == 3">
+					<!-- empleado -->
+					<label for="rol" class="form-label">Rol</label>
+					<!-- <input type="text" class="form-control text-danger" id="rol" name="rol" th:field="${usuarios.roles.rol}" required>-->
+					<select class="form-select text-danger" name="rol" id="rol"
+						th:field="${usuarios.roles.rol}">
+						<option selected disabled value="">Seleccione...</option>
+						<option value="empleado">Empleado</option>
+						<option value="cliente">Cliente</option>
+					</select>
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<!-- *************************************************************************************************************** -->
+				<div class="col-12">
+					<label for="email" class="form-label">eMail</label> <input
+						type="text" class="form-control text-danger" id="email"
+						name="email" th:field="${usuarios.email}" required>
+				</div>
+				<div class="col-12">
+					<label for="clave" class="form-label">Clave</label> <input
+						type="password" class="form-control text-danger" id="clave"
+						name="clave" th:field="${usuarios.clave}" required>
+				</div>
+				<div class="col-12">
+					<label for="nombre" class="form-label">Nombre</label> <input
+						type="text" class="form-control text-danger" id="nombre"
+						name="nombre" th:field="${usuarios.nombre}" required>
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12">
+					<label for="apellido1" class="form-label">Apellido1</label> <input
+						type="text" class="form-control text-danger" id="apellido1"
+						name="apellido1" th:field="${usuarios.apellido1}" required>
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12">
+					<label for="apellido2" class="form-label">Apellido2</label> <input
+						type="text" class="form-control text-danger" id="apellido2"
+						name="apellido2" th:field="${usuarios.apellido2}">
+					<div class="invalid-feedback">Complete los datos</div>
+				</div>
+				<div class="col-12">
+					<label for="direccion" class="form-label">Direccion</label> <input
+						type="text" class="form-control text-danger" id="direccion"
+						name="direccion" th:field="${usuarios.direccion}">
+				</div>
+				<div class="col-12">
+					<label for="provincia" class="form-label">Provincia</label> <input
+						type="text" class="form-control text-danger" id="provincia"
+						name="provincia" th:field="${usuarios.provincia}">
+				</div>
+				<div class="col-6">
+					<label for="localidad" class="form-label">Localidad</label> <input
+						type="text" class="form-control text-danger" id="localidad"
+						name="localidad" th:field="${usuarios.localidad}">
+				</div>
+				<div class="col-6">
+					<label for="telefono" class="form-label">Telefono</label> <input
+						type="text" class="form-control text-danger" id="telefono"
+						name="telefono" th:field="${usuarios.telefono}">
+				</div>
+				<div class="col-6">
+					<label for="dni" class="form-label">DNI</label> <input type="text"
+						class="form-control text-danger" id="dni" name="dni"
+						th:field="${usuarios.dni}">
+				</div>
+			</div>
+			<hr class="my-4">
+			<button class="w-100 btn btn-danger btn-lg" type="submit">Grabar</button>
+		</form>
+	</div>
+
+
+
+
+	<script>
+		(function() {
+			'use strict'
+			// Fetch all the forms we want to apply custom Bootstrap validation styles to
+			var forms = document.querySelectorAll('.needs-validation')
+			// Loop over them and prevent submission
+			Array.prototype.slice.call(forms).forEach(function(form) {
+				form.addEventListener('submit', function(event) {
+					if (!form.checkValidity()) {
+						event.preventDefault()
+						event.stopPropagation()
+					}
+					form.classList.add('was-validated')
+				}, false)
+			})
+		})()
+	</script>
+
+
+
+
+
+
+	<div th:replace="@{fragments/pie.html} :: footer"></div>
+
+
+</body>
+</html>

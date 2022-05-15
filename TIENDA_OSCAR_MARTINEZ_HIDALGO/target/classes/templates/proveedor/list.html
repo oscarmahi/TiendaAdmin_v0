@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="@{fragments/cabecera.html} :: cabeceraLink">
+
+</head>
+<body>
+	<div th:replace="@{fragments/cabecera.html} :: cabecera"></div>
+
+	<h3 class="text-center">Lista de Proveedores</h3>
+	<hr/>
+
+	<!-- LISTAR LOS PROVEEDORES -->
+	<table class="table table-info table-hover">
+		<tr>
+			<td>Nombre</td>
+			<td>Direccion</td>
+			<td>Localidad</td>
+			<td>Provincia</td>
+			<td>CIF</td>
+			<td>Telefono</td>
+			<td>eMail</td>
+			<td>Accion</td>
+		</tr>
+		<tr  th:each="cli : ${lista}" class="table-warning">
+			<td th:text="${cli.nombre}"></td>
+			<td th:text="${cli.direccion}"></td>
+			<td th:text="${cli.localidad}"></td>
+			<td th:text="${cli.provincia}"></td>
+			<td th:text="${cli.cif}"></td>
+			<td th:text="${cli.telefono}"></td>
+			<td th:text="${cli.email}"></td>						
+			<td><a th:href="@{/proveedor/form/{id}(id=${cli.id})}"/>Ver</td>
+		</tr>
+	</table>
+	  <form action="/proveedor/form">
+       <div class="row w-100 align-items-center">
+           <div class="col text-center">             
+               <button class="btn btn-danger regular-button" type="submit" name="verCarrito">ALTA DE PROVEEDOR</button>  
+           </div>  
+       </div>
+    </form>	
+
+
+	<div th:replace="@{fragments/pie.html} :: footer"></div>
+</body>
+</html>

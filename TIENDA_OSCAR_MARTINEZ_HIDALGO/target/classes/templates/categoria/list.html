@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="@{fragments/cabecera.html} :: cabeceraLink">
+
+</head>
+<body>
+	<div th:replace="@{fragments/cabecera.html} :: cabecera"></div>
+
+	<h3 class="text-center">Lista de Categorias</h3>
+	<hr/>
+<!-- LISTAR LOS PRODUCTOS -->
+	<table class="table table-info table-hover">
+		<tr>
+			<td>Nombre</td>
+			<td>Descripcion</td>
+			<td>Accion</td>
+		</tr>
+		<tr  th:each="prod : ${lista}" class="table-warning">
+			<td th:text="${prod.nombre}"></td>
+			<td th:text="${prod.descripcion}"></td>
+			<td><a th:href="@{/categoria/form/{id}(id=${prod.id})}"/>Ver</td>
+		</tr>
+	</table>
+	  <form action="/categoria/form">
+       <div class="row w-100 align-items-center">
+           <div class="col text-center">             
+               <button class="btn btn-danger regular-button" type="submit" name="verCarrito">ALTA DE CATEGORIA</button>  
+           </div>  
+       </div>
+    </form>	
+
+	<div th:replace="@{fragments/pie.html} :: footer"></div>
+</body>
+</html>>
